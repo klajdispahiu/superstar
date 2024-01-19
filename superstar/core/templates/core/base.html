@@ -1,0 +1,30 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+    <body>
+        <nav class="py-6 px-8 flex items-center justify-between bg-[#fcd34d]">
+            <h1 class="text-xl text-black"><a href="{% url 'index' %}">Superstar</a></h1>
+
+            <div class="space-x-4">
+                <a href="{% url 'about' %}" class="text-black">About</a>
+
+                <a href="#" class="py-4 px-8 bg-teal-600 text-black">Log in</a>
+                <a href="{% url 'sign-up' %}" class="py-4 px-8 bg-purple-600 text-black">Sign up</a>
+            </div>
+        </nav>
+
+        <div class="py-6 px-8">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <footer class="py-8 px-8 bg-[#fcd34d] text-center">
+            <p class="text-black">Tirana ICT Academy</p>
+        </footer>
+    </body>
+</html>
