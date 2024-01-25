@@ -13,8 +13,12 @@
             <div class="space-x-4">
                 <a href="{% url 'about' %}" class="text-black">About</a>
 
-                <a href="#" class="py-4 px-8 bg-teal-600 text-black">Log in</a>
-                <a href="{% url 'sign-up' %}" class="py-4 px-8 bg-purple-600 text-black">Sign up</a>
+                {% if user.is_authenticated %}
+                    <h1>{{ request.user }}</h1>
+                {% else %}
+                    <a href="{% url 'log-in' %}" class="py-4 px-8 bg-teal-600 text-black">Log in</a>
+                    <a href="{% url 'sign-up' %}" class="py-4 px-8 bg-purple-600 text-black">Sign up</a>
+                {% endif %}
             </div>
         </nav>
 
