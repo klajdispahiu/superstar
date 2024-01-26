@@ -14,7 +14,8 @@
                 <a href="{% url 'about' %}" class="text-black">About</a>
 
                 {% if user.is_authenticated %}
-                    <h1>{{ request.user }}</h1>
+                    <a href="#" class="text-black">{{ user }}</a>
+                    <a href="{% url 'log-out' %}" class="py-4 px-8 bg-teal-600 text-black">Log out</a>
                 {% else %}
                     <a href="{% url 'log-in' %}" class="py-4 px-8 bg-teal-600 text-black">Log in</a>
                     <a href="{% url 'sign-up' %}" class="py-4 px-8 bg-purple-600 text-black">Sign up</a>

@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import render, redirect
 
 from .models import User
@@ -35,12 +35,10 @@ def log_in(request):
                 
                 return redirect('/')
 
-    return render(
-        request,
-        'account/log-in.html',
-        {
-            'emri':'Regi',
-            'mbiemri': 'Mele'
-        }
-    )
+    return render(request,'account/log-in.html',)
 
+def log_out(request):
+    if request.user:
+        auth_logout(request)
+    
+    return redirect('/')

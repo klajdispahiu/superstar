@@ -1,5 +1,11 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-<h1>Index</h1>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'projects' %}" class="py-4 px-8 bg-teal-600 text-black">Projects</a>
+{% else %}
+    <h1>Pershendetje, bej log in ose sign up per te pare projektet e tua!</h1>
+{% endif %}
+
 {% endblock %}
