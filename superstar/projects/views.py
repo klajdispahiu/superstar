@@ -1,6 +1,18 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+
+from .models import Project
 
 # Create your views here.
 
+@login_required
 def projects(request):
-    return render(request, 'projects/projects.html')
+    projects = Project.objects.filter(created_by=request.user)
+
+    return render(
+        request,
+        'projects/projects.html',
+        {
+            'projects': projects
+        }
+    )
