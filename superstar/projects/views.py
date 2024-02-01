@@ -7,7 +7,7 @@ from .models import Project
 
 @login_required
 def projects(request):
-    projects = Project.objects.filter(created_by=request.user)
+    projects = Project.objects.filter(created_by=request.user).order_by('-updated_at')
 
     return render(
         request,
@@ -15,4 +15,11 @@ def projects(request):
         {
             'projects': projects
         }
+    )
+
+@login_required
+def create_project(request):
+        return render(
+        request,
+        'projects/create_project.html',
     )

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 
 from account.models import User
 
@@ -9,6 +10,8 @@ class Project(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     created_by = models.ForeignKey(User, related_name='projects', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(default=now, editable=False)
+    updated_at = models.DateTimeField(auto_now=True, blank=True)
 
     def __str__(self):
         return self.name
