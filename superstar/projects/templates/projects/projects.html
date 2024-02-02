@@ -13,12 +13,12 @@
         </div>
     </div>
     {% for project in projects %}
-    <div class="w-[100%] h-[50px] bg-green-200 flex justify-between items-center p-1">
+    <div class="w-[100%] h-[50px] hover:bg-green-100 bg-green-200 flex justify-between items-center p-1">
         <div class="ml-3 font-bold">
-            <h2>{{project.name}}</h2>
+            <h2><a href="{% url 'project_details' project.id %}">{{project.name}}</a></h2>
         </div>
         <div class="flex w-[50%] justify-evenly">
-            <h2>{{project.description}}</h2>
+            <h2 class="w-[100px]">{{project.description}}</h2>
             <h2>{{project.created_at}}</h2>
         </div>
     </div>

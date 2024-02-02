@@ -19,7 +19,32 @@ def projects(request):
 
 @login_required
 def create_project(request):
-        return render(
+    object_created=False
+
+    if request.method == 'POST':
+        project_title = request.POST.get('title')
+        project_description = request.POST.get('description')
+        project_owner = request.user
+
+        if project_title != "" and project_description != "":
+            Project.objects.create(name=project_title, description=project_description, created_by=project_owner)
+            object_created=True
+
+    return render(
         request,
         'projects/create_project.html',
+        {
+            'object_created': object_created
+        }
+    )
+
+@login_required
+def project_details(request, project_id):
+    selected_project = Project.objects.filter(created_by=request.user).get(id=project_id)
+    return render(
+        request,
+        'projects/project_details.html',
+        {
+            'selected_project': selected_project
+        }
     )
