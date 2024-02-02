@@ -9,7 +9,7 @@
         </div>
         <div class="flex w-[50%] justify-evenly">
             <h2>Pershkrimi i projektit </h2>
-            <h2>Data e krijimit </h2>
+            <h2>Perditesimi i fundit </h2>
         </div>
     </div>
     {% for project in projects %}
@@ -19,7 +19,7 @@
         </div>
         <div class="flex w-[50%] justify-evenly">
             <h2 class="w-[150px] overflow-hidden whitespace-nowrap">{{project.description}}</h2>
-            <h2>{{project.created_at}}</h2>
+            <h2>{{project.updated_at}}</h2>
         </div>
     </div>
     {% endfor %}

@@ -57,21 +57,22 @@ def project_delete(request, project_id):
 
 @login_required
 def project_edit(request, project_id):
-    object_edited=False
+    selected_project = Project.objects.get(id=project_id)
 
     if request.method == 'POST':
         project_title = request.POST.get('title')
         project_description = request.POST.get('description')
-        project_owner = request.user
 
         if project_title != "" and project_description != "":
-            Project.objects.create(name=project_title, description=project_description, created_by=project_owner)
-            object_edited=True
+            selected_project.name = project_title
+            selected_project.description = project_description
+            selected_project.save()
+            return redirect('/projects/list/')
 
     return render(
         request,
-        'projects/create_project.html',
+        'projects/project_edit.html',
         {
-            'object_edited': object_edited
+            "selected_project": selected_project
         }
     )
