@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import Project
 
@@ -46,5 +46,32 @@ def project_details(request, project_id):
         'projects/project_details.html',
         {
             'selected_project': selected_project
+        }
+    )
+
+@login_required
+def project_delete(request, project_id):
+    selected_project = Project.objects.filter(created_by=request.user).get(id=project_id)
+    selected_project.delete()
+    return redirect('/projects/list/')
+
+@login_required
+def project_edit(request, project_id):
+    object_edited=False
+
+    if request.method == 'POST':
+        project_title = request.POST.get('title')
+        project_description = request.POST.get('description')
+        project_owner = request.user
+
+        if project_title != "" and project_description != "":
+            Project.objects.create(name=project_title, description=project_description, created_by=project_owner)
+            object_edited=True
+
+    return render(
+        request,
+        'projects/create_project.html',
+        {
+            'object_edited': object_edited
         }
     )

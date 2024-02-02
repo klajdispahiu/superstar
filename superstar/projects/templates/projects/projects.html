@@ -18,7 +18,7 @@
             <h2><a href="{% url 'project_details' project.id %}">{{project.name}}</a></h2>
         </div>
         <div class="flex w-[50%] justify-evenly">
-            <h2 class="w-[100px]">{{project.description}}</h2>
+            <h2 class="w-[150px] overflow-hidden whitespace-nowrap">{{project.description}}</h2>
             <h2>{{project.created_at}}</h2>
         </div>
     </div>

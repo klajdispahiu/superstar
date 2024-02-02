@@ -10,5 +10,10 @@
     <h3 class="font-bold underline text-[20px] mb-5">{{selected_project.created_by}}</h3>
 </div>
 
+<div class="w-[100%] flex justify-end">
+    <a href="{% url 'project_delete' selected_project.id %}"><button class="py-4 px-8 bg-red-600 text-white">Delete</button></a>
+    <a href="{% url 'project_edit' selected_project.id %}"><button class="py-4 px-8 ml-5 bg-blue-600 text-white">Edit</button></a>
+</div>
+
 {% endblock %}
 
