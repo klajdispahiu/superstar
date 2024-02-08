@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('core.urls')),
     path('', include('account.urls')),
     path('', include('projects.urls')),
+    path('', include('todolist.urls')),
 ]

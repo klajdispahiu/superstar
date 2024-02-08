@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h1 class="font-bold underline text-[30px] mb-5">Tasks for project: {{ selected_project.name }}</h1>
+
+    <div class="w-[100%] h-[50px] bg-green-600 flex justify-between items-center p-1">
+        <div class="ml-3 font-bold">
+            <h2>Emri i taskut</h2>
+        </div>
+        <div class="flex w-[50%] justify-evenly">
+            <h2>Pershkrimi  i taskut </h2>
+        </div>
+    </div>
+
+    {% for task in task_list %}
+        <div class="w-[100%] h-[50px] hover:bg-green-100 bg-green-200 flex justify-between items-center p-1">
+            <div class="ml-3 font-bold">
+                <h2><a href="#">{{task.name}}</a></h2>
+            </div>
+            <div class="flex w-[50%] justify-evenly">
+                <h2 class="w-[150px] overflow-hidden whitespace-nowrap">{{task.description}}</h2>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
