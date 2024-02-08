@@ -2,6 +2,7 @@
 
 {% block content %}
 <h1 class="font-bold underline text-[30px] mb-5">Tasks for project: {{ selected_project.name }}</h1>
+<a href="{{request.META.HTTP_REFERER|escape}}">Back</a>
 
     <div class="w-[100%] h-[50px] bg-green-600 flex justify-between items-center p-1">
         <div class="ml-3 font-bold">
