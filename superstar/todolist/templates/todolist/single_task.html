@@ -10,7 +10,7 @@
     
     <div class="w-[100%] flex justify-end">
         <a href="{% url 'task_delete' selected_task.id %}"><button class="py-4 px-8 bg-red-600 text-white">Delete</button></a>
-        <a href="#"><button class="py-4 px-8 ml-5 bg-blue-600 text-white">Edit</button></a>
+        <a href="{% url 'task_edit' selected_task.id %}"><button class="py-4 px-8 ml-5 bg-blue-600 text-white">Edit</button></a>
     </div>
 </div>
 

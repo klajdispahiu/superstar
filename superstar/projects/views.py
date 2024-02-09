@@ -3,11 +3,15 @@ from django.shortcuts import render, redirect
 
 from .models import Project
 
-# Create your views here.
-
 @login_required
 def projects(request):
-    projects = Project.objects.filter(created_by=request.user).order_by('-updated_at')
+    projects = []
+    query = request.POST.get('search')
+
+    if request.method == 'POST' and query != '':
+        projects = Project.objects.filter(created_by=request.user).filter(name__icontains=query).order_by('-updated_at')
+    else:
+        projects = Project.objects.filter(created_by=request.user).order_by('-updated_at')
 
     return render(
         request,

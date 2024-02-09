@@ -86,4 +86,33 @@ def task_delete(request, task_id):
         }
     ) 
     
-    
+@login_required
+def task_edit(request, task_id):
+    selected_task = Todolist.objects.get(id=task_id)
+
+    if request.method == 'POST':
+        task_name = request.POST.get('name')
+        task_description = request.POST.get('description')
+
+        if task_name != "" and task_description != "":
+            selected_task.name = task_name
+            selected_task.description = task_description
+            selected_task.save()
+            
+            return render(
+                request, 
+                'todolist/single_task.html',
+                {
+                    'selected_task' : selected_task
+
+                }
+            )
+
+    return render(
+        request, 
+        'todolist/edit_todolist.html',
+        {
+            'selected_task' : selected_task
+
+        }
+    )
