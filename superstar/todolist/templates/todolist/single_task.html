@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h1 class="font-bold underline text-[30px] mb-5 text-center">{{selected_task.name}}</h1>
+<h1 class="text-center">{{selected_task.description}}</h1>
+
+
+<div class="flex justify-between">
+    
+    <div class="w-[100%] flex justify-end">
+        <a href="{% url 'task_delete' selected_task.id %}"><button class="py-4 px-8 bg-red-600 text-white">Delete</button></a>
+        <a href="#"><button class="py-4 px-8 ml-5 bg-blue-600 text-white">Edit</button></a>
+    </div>
+</div>
+
+{% endblock %}
+

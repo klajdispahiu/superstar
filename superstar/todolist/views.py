@@ -55,3 +55,35 @@ def create_task(request, project_id):
             'selected_project': selected_project
         }
     )
+
+@login_required
+def single_task(request, task_id):
+
+    selected_task = Todolist.objects.get(id=task_id)
+
+    return render (
+        request,
+        'todolist/single_task.html',
+{
+    'selected_task' : selected_task
+}
+    )
+    
+@login_required
+def task_delete(request, task_id):
+    selected_task = Todolist.objects.get(id=task_id)
+    selected_task.delete()
+
+    selected_project=Project.objects.filter(created_by=request.user).get(id=selected_task.project.id)
+
+    task_list = Todolist.objects.filter(project=selected_task.project.id)
+    return render(
+        request,
+        'todolist/todolist.html',
+        {
+            'selected_project': selected_project,
+            'task_list': task_list
+        }
+    ) 
+    
+    
