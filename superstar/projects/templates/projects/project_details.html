@@ -14,6 +14,7 @@
     <div class="w-[100%] flex justify-start">
         <a style="margin-right:20px" href="{% url 'create_task' selected_project.id %}"><button class="py-4 px-8 ml-5 bg-blue-600 text-white">Create task</button></a>
         <a style="margin-right:20px" href="{% url 'tasks' selected_project.id %}"><button class="py-4 px-8 ml-5 bg-blue-600 text-white">Tasks</button></a>
+        <a href="{% url 'upload_file' selected_project.id %}" class="py-4 px-8 bg-gray-600 text-white">Upload File</a>
         <a href="{% url 'projects' %}" class="py-4 px-8 bg-teal-600 text-white">Project list</a>
     </div>
     <div class="w-[100%] flex justify-end">

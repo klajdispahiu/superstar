@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .models import Project
+from .forms import ProjectFileForm
 
 @login_required
 def projects(request):
@@ -78,5 +79,34 @@ def project_edit(request, project_id):
         'projects/project_edit.html',
         {
             "selected_project": selected_project
+        }
+    )
+
+@login_required
+def upload_file(request, project_id):
+    selected_project = Project.objects.get(id=project_id)
+    form = ProjectFileForm()
+
+    if request.method == 'POST':
+        form = ProjectFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            projectfile = form.save(commit=False)
+            projectfile.project = selected_project
+            projectfile.save()
+
+        return render(
+            request,
+            'projects/project_details.html',
+            {
+                'selected_project': selected_project
+            }
+        )
+        
+    return render(
+        request,
+        'projects/upload_file.html',
+        {
+            "selected_project": selected_project,
+            "form": form
         }
     )
