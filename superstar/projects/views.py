@@ -91,6 +91,7 @@ def upload_file(request, project_id):
         form = ProjectFileForm(request.POST, request.FILES)
         if form.is_valid():
             projectfile = form.save(commit=False)
+            projectfile.name = request.FILES['attachment']
             projectfile.project = selected_project
             projectfile.save()
 
