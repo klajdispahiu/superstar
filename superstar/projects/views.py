@@ -111,3 +111,17 @@ def upload_file(request, project_id):
             "form": form
         }
     )
+    
+@login_required
+def delete_file(request, project_id, file_id):
+    selected_project = Project.objects.filter(created_by=request.user).get(id=project_id)
+    selected_file_on_this_project = selected_project.files.get(id=file_id)
+    selected_file_on_this_project.delete()
+    
+    return render(
+        request,
+        'projects/project_details.html',
+        {
+            'selected_project': selected_project
+        }
+    )

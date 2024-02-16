@@ -17,6 +17,10 @@
             <a href="{{ projectfile.attachment.url }}" target="_blank" class="text-sm text-teal-600">
                 Download file
             </a>
+
+            <a href="{% url 'delete_file' selected_project.id projectfile.id %}" class="text-sm text-teal-600">
+                Delete
+            </a>
             
         </div>
         {% endfor %}
