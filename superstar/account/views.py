@@ -33,7 +33,7 @@ def log_in(request):
             if user is not None:
                 auth_login(request, user)
                 
-                return redirect('/')
+                return redirect('/projects/list/')
 
     return render(request,'account/log-in.html',)
 

@@ -1,29 +1,33 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-<h1 class="font-bold underline text-[30px] mb-5">Tasks for project: {{ selected_project.name }}</h1>
-<a href="{{request.META.HTTP_REFERER|escape}}">Back</a>
+    <div class="w-[90%] pl-[20%] pt-5 h-[50%]">
+        <a href="{{request.META.HTTP_REFERER|escape}}">
+            <button class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                Back
+            </button>
+        </a>
+    <h1 class="font-bold text-black">Tasks for project: {{ selected_project.name }}</h1>
 
+    {% if task_list|length > 0 %}
 
-{% if task_list|length > 0 %}
-
-    <div class="w-[100%] h-[50px] bg-green-600 flex justify-between items-center p-1">
-        <div class="ml-3 font-bold">
-            <h2>Emri i taskut</h2>
+        <div class="w-[100%] h-[50px] bg-gray-900 flex justify-between items-center p-1">
+            <div class="ml-3 font-bold">
+                <h2>Emri i taskut</h2>
+            </div>
+            <div class="flex w-[50%] justify-evenly">
+                <h2>Pershkrimi  i taskut </h2>
+            </div>
         </div>
-        <div class="flex w-[50%] justify-evenly">
-            <h2>Pershkrimi  i taskut </h2>
-        </div>
-    </div>
-{% else %}
+    {% else %}
 
-<h1>Nuk ka task te krijuar.</h1>
-<a style="margin-right:20px" href="{% url 'create_task' selected_project.id %}"><button class="py-4 px-8 ml-5 bg-blue-600 text-white">Create task</button></a>
+    <h1>Nuk ka task te krijuar.</h1>
+    <a style="margin-right:20px" href="{% url 'create_task' selected_project.id %}"><button class="py-4 px-8 ml-5 bg-blue-600 text-white">Create task</button></a>
 
-{% endif %}
+    {% endif %}
 
     {% for task in task_list %}
-        <div class="w-[100%] h-[50px] hover:bg-green-100 bg-green-200 flex justify-between items-center p-1">
+        <div class="w-[100%] h-[50px] hover:bg-gray-400 bg-gray-600 flex justify-between items-center p-1">
             <div class="ml-3 font-bold">
                 <h2><a href="{% url 'single_task' task.id %}">{{task.name}}</a></h2>
             </div>
@@ -32,5 +36,5 @@
             </div>
         </div>
     {% endfor %}
-
+</div>
 {% endblock %}

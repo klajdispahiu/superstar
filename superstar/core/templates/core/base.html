@@ -1,35 +1,66 @@
 <!Doctype html>
-<html>
+<html class="h-screen w-full">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
 
-    <body>
-        <nav class="py-6 px-8 flex items-center justify-between bg-[#fcd34d]">
-            <h1 class="text-xl text-black"><a href="{% url 'index' %}">Superstar</a></h1>
+    <body class="h-full text-white">
+        <div class="w-[20%] h-screen absolute">
+            <nav id="navbariMobile" class="h-full flex flex-col justify-between pt-[35%] bg-gray-600 h-[500px] w-[50%]">
+                <p class="transform -rotate-90 tracking-widest">Superstar</p>
+                <button onclick="toggleNavbar()" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                    ...
+                </button>
+            </nav>
+        </div>
+        
+        <nav id="navbari" class="h-full absolute flex flex-col justify-between bg-gray-600 h-[500px] w-[20%] hidden">
+            <h1 class="flex justify-center w-full text-xl font-bolder pt-5 tracking-widest"><a href="{% url 'index' %}">Superstar</a></h1>
+                <div class="flex flex-col">
+                    <!-- <a href="{% url 'about' %}" class="text-black">About</a> -->
+                    
+                    {% if user.is_authenticated %}
+                        <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            <a href="#" class="text-black">{{ user.name }}</a>
+                        </button>
 
-            <div class="space-x-4">
-                <a href="{% url 'about' %}" class="text-black">About</a>
-
-                {% if user.is_authenticated %}
-                    <a href="#" class="text-black">{{ user }}</a>
-                    <a href="{% url 'log-out' %}" class="py-4 px-8 bg-teal-600 text-black">Log out</a>
-                {% else %}
-                    <a href="{% url 'log-in' %}" class="py-4 px-8 bg-teal-600 text-black">Log in</a>
-                    <a href="{% url 'sign-up' %}" class="py-4 px-8 bg-purple-600 text-black">Sign up</a>
-                {% endif %}
-            </div>
+                        <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                            <a href="{% url 'log-out' %}" class="">Log out</a>
+                        </button>
+                    {% else %}
+                    <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        <a href="{% url 'log-in' %}" class="">Log in</a>
+                    </button>
+                    <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                        <a href="{% url 'sign-up' %}" class="">Sign up</a>
+                    </button>
+                    {% endif %}
+                </div>            
+                <button onclick="toggleNavbar()" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                    ...
+                </button>
         </nav>
 
-        <div class="py-6 px-8">
+        <div class="h-[92%]">
             {% block content %}
             {% endblock %}
         </div>
 
-        <footer class="py-8 px-8 bg-[#fcd34d] text-center">
-            <p class="text-black">Tirana ICT Academy</p>
+        <footer class="py-8 px-8 bg-gray-600 text-center">
+            <p>Tirana ICT Academy</p>
         </footer>
     </body>
+    
+    <script>
+        function toggleNavbar() {
+            const navi = document.getElementById('navbari');
+            navi.classList.toggle("hidden");
+
+            const naviMobile = document.getElementById('navbariMobile');
+            naviMobile.classList.toggle("hidden");
+        }    
+    </script>
+
 </html>
