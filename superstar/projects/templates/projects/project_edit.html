@@ -3,14 +3,15 @@
 {% block content %}
 <div class="w-[90%] pl-[20%] pt-5 h-[50%]">
     <a href="{{request.META.HTTP_REFERER|escape}}">
-        <button class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+        <button
+            class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
             Back
         </button>
     </a>
-    <div class="max-w-xl mx-auto py-8 bg-teal-800 text-center">
+    <div class="max-w-xl mx-auto py-8 bg-gray-600 text-center">
 
         {% if object_edited %}
-            <h1 class="p-3 bg-green-300 text-[25px] font-bold mb-5">Project was updated successfully</h1>
+        <h1 class="p-3 bg-green-300 text-[25px] font-bold mb-5">Project was updated successfully</h1>
         {% endif %}
 
         <h1 class="text-3xl text-white">Editing {{ selected_project.name }} project</h1>
@@ -20,16 +21,19 @@
 
             <div>
                 <label class="text-white text-[25px]">Title</label><br>
-                <input name="title" type="text" value="{{selected_project.name}}" class="w-full py-4 px-6 bg-teal-500 text-white">
+                <input name="title" type="text" value="{{selected_project.name}}"
+                    class="w-full py-4 px-6 bg-gray-500 text-white">
             </div>
 
             <div>
                 <label class="text-white text-[25px]">Description</label><br>
-                <input name="description" type="text" value="{{selected_project.description}}" class="w-full py-4 px-6 bg-teal-500 text-white">
+                <input name="description" type="text" value="{{selected_project.description}}"
+                    class="w-full py-4 px-6 bg-gray-500 text-white">
             </div>
 
             <div>
-                <button class="py-4 px-8 bg-purple-600 text-white">Update</button>
+                <button
+                    class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Update</button>
             </div>
         </form>
     </div>
