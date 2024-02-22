@@ -125,3 +125,6 @@ def delete_file(request, project_id, file_id):
             'selected_project': selected_project
         }
     )
+
+def gjej_dallorin(x1,x2,x3):
+    return x2*x2 - 4*x1*x3
