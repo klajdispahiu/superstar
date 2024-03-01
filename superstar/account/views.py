@@ -1,5 +1,7 @@
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.conf import settings
 
 from .models import User
 
@@ -14,6 +16,14 @@ def sign_up(request):
             user = User.objects.create_user(name, email, password1)
 
             print('User created:', user)
+
+            send_mail(
+                'Xhovana solli biskota',
+                'Por kerkon sushiiiiii',
+                settings.EMAIL_HOST_USER,
+                [email],
+                fail_silently=False
+            )
 
             return redirect('log-in')
         else:
